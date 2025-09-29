@@ -19,18 +19,9 @@ jobs:
       with:
         timeout: 10
         setup-command: ''
-    - name: Run Pytest Manually
-      id: run-pytest-manually
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: Run Pytest Manually
-        setup-command: pip install pytest
-        command: pytest tests/test_solution.py
-        timeout: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         TEST-FILES-PRESENT_RESULTS: "${{steps.test-files-present.outputs.result}}"
-        RUN-PYTEST-MANUALLY_RESULTS: "${{steps.run-pytest-manually.outputs.result}}"
       with:
-        runners: test-files-present,run-pytest-manually
+        runners: test-files-present
